@@ -3,7 +3,7 @@
 @section('content')
 <div class="container-fluid">
 	<h2>Item Edit(Form/Old value)</h2>
-	@if($errors->any())
+	{{-- @if($errors->any())
 	<div class="alert alert-danger">
 		<ul>
 			@foreach($errors->all() as $error)
@@ -11,7 +11,7 @@
 			@endforeach
 		</ul>
 	</div>
-	@endif
+	@endif --}}
 	<form action="{{route('items.update',$item->id)}}" method="post" enctype="multipart/form-data">
 
 			@csrf
@@ -21,23 +21,34 @@
 				<div class="col-sm-10">
 					<input type="text" class="form-control" id="codeno" name="codeno" value="{{$item->codeno}}" readonly="readonly">
 				</div>
+
 			</div>
 			<div class="form-group row">
 				<label for="name" class="col-sm-2 col-form-label">Name</label>
 				<div class="col-sm-10">
 					<input type="text" class="form-control" id="name" name="name" value="{{$item->name}}">
+					@if ($errors->has('name'))
+                    <span class="text-danger">{{ $errors->first('name') }}</span>
+               		 @endif
 				</div>
 			</div>
 			<div class="form-group row">
 				<label for="price" class="col-sm-2 col-form-label">Price</label>
 				<div class="col-sm-10">
 					<input type="number" class="form-control" id="price" name="price" value="{{$item->price}}">
+					@if ($errors->has('price'))
+                    <span class="text-danger">{{ $errors->first('price') }}</span>
+               		 @endif
 				</div>
+
 			</div>
 			<div class="form-group row">
 				<label for="discount" class="col-sm-2 col-form-label">Discount</label>
 				<div class="col-sm-10">
 					<input type="number" class="form-control" id="discount" name="discount" value="{{$item->discount}}">
+					@if ($errors->has('discount'))
+                    <span class="text-danger">{{ $errors->first('discount') }}</span>
+               		 @endif
 				</div>
 			</div>
 			<div class="form-group row">
@@ -85,6 +96,9 @@
 				<label for="description" class="col-sm-2 col-form-label">Description</label>
 				<div class="col-sm-10">
 					<textarea id="description" class="form-control" name="description">{{$item->description}}</textarea>
+					@if ($errors->has('description'))
+                    <span class="text-danger">{{ $errors->first('description') }}</span>
+               		 @endif
 				</div>
 			</div>
 

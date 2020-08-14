@@ -3,7 +3,7 @@
 @section('content')
 <div class="container-fluid">
 	<h2>Subcategory Create (Form)</h2>
-	@if($errors->any())
+	{{-- @if($errors->any())
 	<div class="alert alert-danger">
 		<ul>
 			@foreach($errors->all() as $error)
@@ -11,7 +11,7 @@
 			@endforeach
 		</ul>
 	</div>
-	@endif
+	@endif --}}
 	<form action="{{route('subcategories.store')}}" method="post" enctype="multipart/form-data">
 
 			@csrf
@@ -21,6 +21,9 @@
 				<label for="name" class="col-sm-2 col-form-label">Name</label>
 				<div class="col-sm-10">
 					<input type="text" class="form-control" id="name" name="name">
+					@if ($errors->has('name'))
+                    <span class="text-danger">{{ $errors->first('name') }}</span>
+               		 @endif
 				</div>
 			</div>
 			
@@ -38,12 +41,7 @@
 			</div>
 			
 			
-			<div class="form-group row">
-				<label for="description" class="col-sm-2 col-form-label">Description</label>
-				<div class="col-sm-10">
-					<textarea id="description" class="form-control" name="description"></textarea>
-				</div>
-			</div>
+			
 
 			<button type="submit" class="btn btn-primary" id="create">Create</button>
 

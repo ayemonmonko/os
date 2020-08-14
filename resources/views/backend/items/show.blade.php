@@ -12,6 +12,8 @@
 			<p>Product Code:{{$item->codeno}}</p>
 			<p>Product Price:{{$item->price}}</p>
 			<p>Product Description:{{$item->description}}</p>
+			<p>Product Brand:{{$item->brand->name}}</p>
+			<p>Product Subactegory:{{$item->subcategory->name}}</p>
 		</div>
 	</div>
 </div>

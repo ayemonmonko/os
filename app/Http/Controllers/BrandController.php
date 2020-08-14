@@ -8,6 +8,7 @@ use App\Brand;
 
 class BrandController extends Controller
 {
+    
     /**
      * Display a listing of the resource.
      *
@@ -15,7 +16,8 @@ class BrandController extends Controller
      */
     public function index()
     {
-         return view('backend.brands.index');
+        $brands = Brand::all();
+         return view('backend.brands.index',compact('brands'));
     }
 
     /**
@@ -79,7 +81,8 @@ class BrandController extends Controller
      */
     public function edit($id)
     {
-        return view('backend.brands.edit') ;
+        $brand=Brand::find($id);
+        return view('backend.brands.edit',compact('brand')) ;
     }
 
     /**
@@ -91,7 +94,34 @@ class BrandController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        //Validation
+        $request->validate([
+            
+            'name'=>'required',
+            'photo'=>'sometimes'
+            
+        ]);
+        // If include file,upload
+        // Fileupload
+        if ($request->hasFile('photo')){
+      $imageName=time().'.'.$request->photo->extension();
+        $request->photo->move(public_path('backend/brandimg'),$imageName);
+            //delete old photo (unlink)
+     
+
+        $myfile='backend/brandimg/'.$imageName;
+    }else{
+        $myfile=$request->oldphoto;
+    }
+
+        // Data insert
+        $brand=Brand::find($id);
+        $brand->name=$request->name;
+        $brand->photo=$myfile;
+        $brand->save();
+
+        // Redirect
+        return redirect()->route('brands.index');
     }
 
     /**
@@ -102,6 +132,9 @@ class BrandController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $brand=Brand::find($id);
+        $brand->delete();
+         // redirect 
+        return redirect()->route('brands.index');
     }
 }

@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use Illuminate\Support\Facades\File;
 
 use Illuminate\Http\Request;
 use App\Item;
@@ -8,6 +9,7 @@ use App\Brand;
 use App\Subcategory;
 class ItemController extends Controller
 {
+    
     /**
      * Display a listing of the resource.
      *
@@ -57,6 +59,7 @@ class ItemController extends Controller
         $imageName=time().'.'.$request->photo->extension();
         $request->photo->move(public_path('backend/itemimg'),$imageName);
         $myfile='backend/itemimg/'.$imageName;
+        
 
         // Data insert
         $item=new Item;
@@ -70,8 +73,13 @@ class ItemController extends Controller
         $item->subcategory_id=$request->subcategory;
         $item->save();
 
+
+
         // Redirect
         return redirect()->route('items.index');
+
+      
+
     }
 
     /**
@@ -126,8 +134,11 @@ class ItemController extends Controller
       $imageName=time().'.'.$request->photo->extension();
         $request->photo->move(public_path('backend/itemimg'),$imageName);
             //delete old photo (unlink)
-     
+         unlink ($request->oldphoto);
 
+
+     
+        
         $myfile='backend/itemimg/'.$imageName;
     }else{
         $myfile=$request->oldphoto;
