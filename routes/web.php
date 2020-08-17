@@ -33,7 +33,6 @@ Route::get('profile', 'FrontendController@profile')->name('profile');
 Route::middleware('role:admin')->group(function(){
 
 Route::get('dashboard', 'BackendController@dashboard')->name('dashboard');
-Route::resource('orders','OrderController');
 
 
 Route::resource('items','ItemController');//7 (get-4/post-1/put-1/delete-1)
@@ -51,3 +50,4 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 Route::post('/getItems', 'FrontendController@getItems')->name('getitems');
 
+Route::resource('orders','OrderController');
