@@ -13,16 +13,18 @@ Item Manage
  	-redirect -> (index)
  -show in database
 
- 23-08-2020
+ 13-08-2020
  ----------
  -list,edit,delete
  -validation error,delete image if upload new image
 
  UI
  --
- -filter item page
- -item detail page
- -checkout page
- -profile
- -login
- -register
+ -filter item page(data binding)
+ -profile(UI)
+ -if not include sidebar,center
+
+
+ Backend
+ -------
+ -Order Detail

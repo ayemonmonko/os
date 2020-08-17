@@ -40,11 +40,11 @@
 							<textarea class="notes" placeholder="Your Note Here!"></textarea>
 						</div>
 						<div class="col-md-3 text-right">
-							@auth
+							@role('customer')
 							<a href="#" class="btn btn-dark buy_now">Checkout</a>
 							@else
 							<a href="{{route('login')}}" class="btn btn-dark">Login To Checkout</a>
-							@endauth
+							@endrole
 						</div>
 
 					</div>

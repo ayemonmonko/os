@@ -18,14 +18,14 @@
                 
 
                 <div class="form-group">
-                  <input type="text" class="form-control form-control-user" placeholder="Name" name="user_name" value="Mg Mg">
+                  <input type="text" class="form-control form-control-user" placeholder="Name" name="user_name" value="{{Auth::user()->name}}">
                   
                   <small class="text-danger"></small>
                 </div>
                 
 
                 <div class="form-group">
-                  <input type="email" class="form-control form-control-user" id="exampleInputEmail" placeholder="Email Address" name="user_email" value="mgmg@gmail.com">
+                  <input type="email" class="form-control form-control-user" id="exampleInputEmail" placeholder="Email Address" name="user_email" value="{{Auth::user()->email}}">
                  
                   <small class="text-danger"></small>
 
@@ -33,7 +33,7 @@
                 </div>
                
                 
-                <div class="form-group">
+               {{--  <div class="form-group">
                   <input type="number" class="form-control form-control-user" placeholder="Phone Number" name="user_phone" value="09234567765">
                   
                   <small class="text-danger"></small>
@@ -43,7 +43,7 @@
                   
                   <small class="text-danger"></small>
 
-                </div>
+                </div> --}}
                 
                 <input type="submit" class="btn btn-primary my-5" value="Edit Profile">
 		</form>
