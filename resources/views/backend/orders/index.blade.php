@@ -3,7 +3,8 @@
 @section('content')
 <div class="container">
 	<h2 class="text-center">Orderlist List (Table)</h2>
-	<a href="{{route('orders.create')}}" class="btn btn-success">Add Order</a>
+	
+
 	<table class="table table-bordered">
 		<thead>
 		<tr>
@@ -13,7 +14,7 @@
 			<th>User</th>
 			<th>Note</th>
 			<th>Total</th>
-			<th>Action</th>
+			
 
 
 		</tr>
@@ -23,22 +24,15 @@
 			@foreach($orders as $order)
 			<tr>
 			<td>{{$i++}}</td>
-			<td>{{$order->voucherno}}
+			<td>{{$order->voucherno}}<a href="{{route('orders.show',$order->id)}}"><span class="badge badge-primary badge-pill">Detail</span></a>
+				
 			</td>
 			<td>{{$order->orderdate}}</td>
 			<td>{{$order->user->name}}</td>
 			<td>{{$order->note}}</td>
 			<td>{{$order->total}}</td>
 
-			{{-- <td><a href="{{route('orders.edit',$order->id)}}" class="btn btn-warning">Edit</a>
-				<form method="post" action="{{route('orders.destroy',$order->id)}}" onsubmit="return confirm('Are you sure?')" class="d-inline-block">
-					@csrf
-					@method('DELETE')
-					<input type="submit" name="btnsubmit" value="Delete" class="btn btn-danger">
-				</form>
-
-
-			</td> --}}
+			
 			</tr>
 			@endforeach
 
